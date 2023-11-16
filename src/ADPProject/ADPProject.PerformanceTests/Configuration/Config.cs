@@ -2,10 +2,8 @@
 
 public static class Config
 {
-    public static readonly int TestSize = 90000000;
-    public static readonly int SetIndex = TestSize / 2;
-    public static readonly int SetValue = TestSize * 2;
-    public static readonly int GetIndex = TestSize / 2;
-    public static readonly int RemoveIndex = TestSize / 2;
-    public static readonly int RemoveValue = TestSize / 2;
+    public static readonly int AddCount = 1000000; // Amount of items to add during benchmarks tests
+    public static readonly int GetCount = 10000; // Amount of get operations to execute during benchmark tests
+    public static readonly int SetCount = 10000; // Amount of set operations to execute during benchmark tests
+    public static readonly int DeleteCount = 10000; // Amount of delete operations to execute during benchmark tests
 }

@@ -7,3 +7,6 @@
 Yes
 
 3. How should we import the data? Using a JsonConverter? 
+
+4. Do we have to determine the benchmarks and benchmark amounts?
+5. 
