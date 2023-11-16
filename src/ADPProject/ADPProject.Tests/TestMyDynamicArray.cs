@@ -1,4 +1,4 @@
-﻿using ADPProject.Library;
+﻿using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Tests;
 
@@ -7,7 +7,7 @@ public class TestMyDynamicArray
     [Fact]
     public void Add()
     {
-        IMyDynamicArray<int> array = new MyDynamicArray<int>();
+        IMyList<int> array = new MyDynamicArray<int>();
         
         array.Add(1);
         
@@ -18,7 +18,7 @@ public class TestMyDynamicArray
     [Fact]
     public void Get()
     {
-        IMyDynamicArray<int> array = new MyDynamicArray<int>();
+        IMyList<int> array = new MyDynamicArray<int>();
         
         array.Add(1);
         array.Add(2);
@@ -31,7 +31,7 @@ public class TestMyDynamicArray
     [Fact]
     public void Set()
     {
-        IMyDynamicArray<int> array = new MyDynamicArray<int>();
+        IMyList<int> array = new MyDynamicArray<int>();
         
         array.Add(1);
         array.Add(2);
@@ -46,7 +46,7 @@ public class TestMyDynamicArray
     [Fact]
     public void RemoveByIndex()
     {
-        IMyDynamicArray<int> array = new MyDynamicArray<int>();
+        IMyList<int> array = new MyDynamicArray<int>();
         
         array.Add(1);
         array.Add(2);
@@ -65,7 +65,7 @@ public class TestMyDynamicArray
     [Fact]
     public void RemoveByValue()
     {
-        IMyDynamicArray<int> array = new MyDynamicArray<int>();
+        IMyList<int> array = new MyDynamicArray<int>();
         
         array.Add(1);
         array.Add(2);

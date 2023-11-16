@@ -1,21 +1,9 @@
 ﻿using System.Net.Sockets;
+using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public interface IMyDynamicArray<T>
-{
-    public int Length { get; }
-    public int Capacity { get; }
-    public void Add(T value);
-    public T Get(int index);
-    public void Set(int index, T value);
-    public void RemoveByIndex(int index);
-    public void RemoveByValue(T value);
-    public bool Contains(T value);
-    public int IndexOf(T value);
-}
-
-public class MyDynamicArray<T> : IMyDynamicArray<T> 
+public class MyDynamicArray<T> : IMyList<T> 
 {
     private readonly int _initialCapacity = 8;
     

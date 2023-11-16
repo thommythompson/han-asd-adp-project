@@ -1,41 +1,57 @@
-﻿namespace ADPProject.Library;
+﻿using ADPProject.Library.Interfaces;
 
-public interface IMyStack<T>
-{
-        int Size { get; }
-        void Push(T item);
-        void Pop(T item);
-        void Top();
-        void Peek();
-        bool IsEmpty();
-}
+namespace ADPProject.Library;
 
 public class MyStack<T> : IMyStack<T>
 {
-        public int Size { get; }
+        private IMyList<T> elements { get; init; }
         
+        public int Size => elements.Length;
+        
+        public MyStack()
+        {
+                elements = new MyDoublyLinkedList<T>();
+        }
+
         public void Push(T item)
         {
-                throw new NotImplementedException();
+                elements.Add(item);
         }
 
-        public void Pop(T item)
+        public T Pop()
         {
-                throw new NotImplementedException();
+                GuardAgainstEmptyStack();
+
+                int lastIndex = elements.Length - 1;
+                T popped = elements.Get(lastIndex);
+                elements.RemoveByIndex(lastIndex);
+                return popped;
         }
 
-        public void Top()
+        public T Top()
         {
-                throw new NotImplementedException();
+                GuardAgainstEmptyStack();
+                
+                int lastIndex = elements.Length - 1;
+                T top = elements.Get(lastIndex);
+                return top;
         }
 
-        public void Peek()
+        public T Peek()
         {
-                throw new NotImplementedException();
+                return Top();
         }
 
         public bool IsEmpty()
         {
-                throw new NotImplementedException();
+                return elements.Length == 0;
+        }
+
+        private void GuardAgainstEmptyStack()
+        {
+                if (IsEmpty())
+                { 
+                        throw new InvalidOperationException("The stack is empty.");
+                }
         }
 }

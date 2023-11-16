@@ -1,18 +1,8 @@
-﻿namespace ADPProject.Library;
+﻿using ADPProject.Library.Interfaces;
 
-interface IMyDoublyLinkedList<T>
-{
-    public int Length { get; }
-    public void Add(T value);
-    public T Get(int index);
-    public void Set(int index, T value);
-    public void Remove(int index);
-    public void Remove(T value);
-    public bool Contains(T value);
-    public int IndexOf(T value);
-}
+namespace ADPProject.Library;
 
-public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
+public class MyDoublyLinkedList<T> : IMyList<T>
 {
     private class Node
     {
@@ -30,9 +20,14 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
     
     private Node _head;
     private Node _tail;
-    private int _count;
+    private int _itemsInList;
+
+    public MyDoublyLinkedList()
+    {
+        _itemsInList = 0;
+    }
     
-    public int Length { get => _count; }
+    public int Length { get => _itemsInList; }
     
     public void Add(T value)
     {
@@ -50,7 +45,7 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
             _tail = newNode;
         }
         
-        _count++;
+        _itemsInList++;
     }
 
     public T Get(int index)
@@ -67,14 +62,14 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
         node.Value = value;
     }
 
-    public void Remove(int index)
+    public void RemoveByIndex(int index)
     {
         Node node = GetNodeByIndex(index);
         
         RemoveNode(node);
     }
 
-    public void Remove(T value)
+    public void RemoveByValue(T value)
     {
         Node node = GetNodeByValue(value);
         
@@ -126,7 +121,6 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
         {
             _tail = _tail.Previous;
             _tail.Next = null;
-            return;
         }
         else
         {
@@ -134,7 +128,7 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
             node.Next.Previous = node.Previous;
         }
 
-        _count--;
+        _itemsInList--;
     }
     
     private Node? GetNodeByValue(T value)
@@ -168,7 +162,7 @@ public class MyDoublyLinkedList<T> : IMyDoublyLinkedList<T>
     
     private void CheckIfIndexOutOfRange(int index)
     {
-        if (index < 0 || index >= _count)
-            throw new IndexOutOfRangeException($"Index {index} is out of range, cannot be below 0 or above {_count}");
+        if (index < 0 || index >= _itemsInList)
+            throw new IndexOutOfRangeException($"Index {index} is out of range, cannot be below 0 or above {_itemsInList}");
     }
 }
