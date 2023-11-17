@@ -20,10 +20,30 @@ public class JsonFetcher : IDisposable
         
         using (StreamReader r = new StreamReader(fileName))
         {
-            var Root = System.Reflection.Assembly.GetExecutingAssembly().Location;
-            
             string json = r.ReadToEnd();
             return JsonConvert.DeserializeObject<GraphDataset>(json);
+        }
+    }
+    
+    public HashingDataset GetHashingDataset()
+    {
+        var fileName = Path.Join(DataDirectoryPath, HashingDataset.FileName);
+        
+        using (StreamReader r = new StreamReader(fileName))
+        {
+            string json = r.ReadToEnd();
+            return JsonConvert.DeserializeObject<HashingDataset>(json);
+        }
+    }
+    
+    public SortingDataset GetSortingDataset()
+    {
+        var fileName = Path.Join(DataDirectoryPath, SortingDataset.FileName);
+        
+        using (StreamReader r = new StreamReader(fileName))
+        {
+            string json = r.ReadToEnd();
+            return JsonConvert.DeserializeObject<SortingDataset>(json);
         }
     }
 
