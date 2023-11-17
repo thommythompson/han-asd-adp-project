@@ -1,0 +1,14 @@
+{
+    "image":"mcr.microsoft.com/devcontainers/universal:2",
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "ms-dotnettools.vscode-dotnet-runtime",
+                "ms-dotnettools.csharp",
+                "ms-dotnettools.csdevkit",
+                "dotnettools.vscodeintellicode-csharp",
+                "ms-vsliveshare.vsliveshare"
+            ]
+        }
+      }
+}
