@@ -19,7 +19,7 @@ To run the code without having to setup a local dev environment you could use th
 
 To make use of the test explorer within VS Code the C# Dev Kit extension is used, this extension sadly requires you to login using a microsoft account.
 
-![1700228758200](image/README/1700228758200.png)
+![1700228758200](./docs/image/README/1700228758200.png)
 
 ### Running the tests
 
@@ -51,11 +51,11 @@ Make sure to have docker desktop installed and running.
 
 Install the "Dev Containers" extension within VS Code.
 
-![1700229032423](image/README/1700229032423.png)
+![1700229032423](./docs/image/README/1700229032423.png)
 
 Open the command pallet and use the "> Dev Containers: Reopen in Container" command to connect to a devcontainer.
 
-![1700229040089](image/README/1700229040089.png)
+![1700229040089](./docs/image/README/1700229040089.png)
 
 Wait a while, it will build and start the dev container and reopen a new VS Code windows that is connected to the devcontainer.
 
