@@ -112,4 +112,14 @@ public class MyDeque<T> : IMyDeque<T>
             throw new InvalidOperationException("The deque is empty.");
         }
     }
+
+    public void ConvertFromArray(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            var value = array[i];
+            
+            this.InsertRight(value);
+        }
+    }
 }

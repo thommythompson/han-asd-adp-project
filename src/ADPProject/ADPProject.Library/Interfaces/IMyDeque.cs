@@ -1,6 +1,6 @@
 ﻿namespace ADPProject.Library.Interfaces;
 
-public interface IMyDeque<T>
+public interface IMyDeque<T> : IConvertableFromArray<T>
 {
     int Size { get;  }
     void InsertLeft(T item);

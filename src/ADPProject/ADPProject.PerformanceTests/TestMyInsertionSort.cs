@@ -5,11 +5,11 @@ using Xunit.Abstractions;
 
 namespace ADPProject.PerformanceTests;
 
-public class TestMyDoublyLinkedList
+public class TestMyInsertionSort
 {
     private ITestOutputHelper _outputHelper { get; init; }
     
-    public TestMyDoublyLinkedList(ITestOutputHelper outputHelper)
+    public TestMyInsertionSort(ITestOutputHelper outputHelper)
     {
         _outputHelper = outputHelper;
     }
@@ -17,7 +17,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void Add()
     {
-        IMyList<int> list = new MyDoublyLinkedList<int>();
+        IMySortedList<int> list = new MyInsertionSort<int>();
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -34,7 +34,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void GetAsc()
     {
-        IMyList<int> list = GetList(Config.GetCount);
+        IMySortedList<int> list = new MyInsertionSort<int>();
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -49,7 +49,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void GetDesc()
     {
-        IMyList<int> list = GetList(Config.GetCount);
+        IMySortedList<int> list = new MyInsertionSort<int>();
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -60,41 +60,11 @@ public class TestMyDoublyLinkedList
 
         benchmarker.Stop();
     }
-
-    [Fact]
-    public void SetAsc()
-    {
-        IMyList<int> list = GetList(Config.SetCount);
-        
-        var benchmarker = new Benchmarker(_outputHelper);
-        
-        for (int i = 0; i < Config.SetCount; i++)
-        {
-            list.Set(i, i + 1);
-        }
-        
-        benchmarker.Stop();
-    }
     
-    [Fact]
-    public void SetDesc()
-    {
-        IMyList<int> list = GetList(Config.SetCount);
-        
-        var benchmarker = new Benchmarker(_outputHelper);
-        
-        for (int i = Config.SetCount - 1; i > 0; i--)
-        {
-            list.Set(i, i + 1);
-        }
-        
-        benchmarker.Stop();
-    }
-
     [Fact]
     public void RemoveByIndexZero()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(Config.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -111,7 +81,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void RemoveByIndexDesc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(Config.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -128,7 +98,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void RemoveByValueAsc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(Config.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -145,7 +115,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void RemoveByValueDesc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(Config.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -159,9 +129,9 @@ public class TestMyDoublyLinkedList
         Assert.Equal(0, list.Length);
     }
 
-    private IMyList<int> GetList(int size)
+    private IMySortedList<int> GetList(int size)
     {
-        IMyList<int> list = new MyDoublyLinkedList<int>();
+        IMySortedList<int> list = new MyInsertionSort<int>();
 
         for (int i = 0; i < size; i++)
         {

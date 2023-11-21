@@ -1,4 +1,5 @@
-﻿using ADPProject.Library.Interfaces;
+﻿using System.Collections;
+using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
@@ -164,5 +165,26 @@ public class MyDoublyLinkedList<T> : IMyList<T>
     {
         if (index < 0 || index >= _itemsInList)
             throw new IndexOutOfRangeException($"Index {index} is out of range, cannot be below 0 or above {_itemsInList}");
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = 0; i < _itemsInList - 1; ++i)
+            yield return Get(i);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+    
+    public void ConvertFromArray(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            var value = array[i];
+            
+            this.Add(value);
+        }
     }
 }

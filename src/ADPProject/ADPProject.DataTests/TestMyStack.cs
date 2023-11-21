@@ -1,4 +1,3 @@
-using ADPProject.DataTests.Extensions;
 using ADPProject.Library.Interfaces;
 using ADPProject.Tests.Data;
 

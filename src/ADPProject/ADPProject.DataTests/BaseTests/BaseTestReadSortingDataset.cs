@@ -1,13 +1,13 @@
-using ADPProject.Library.Interfaces;
+﻿using ADPProject.Library.Interfaces;
 using ADPProject.Tests.Data;
 
-namespace ADPProject.DataTests;
+namespace ADPProject.DataTests.BaseTests;
 
-public class TestMyDoublyLinkedList
+public class BaseTestReadSortingDataset<T> where T : IConvertableFromArray<T>
 {
     private SortingDataset _dataset { get; init; } 
     
-    public TestMyDoublyLinkedList()
+    public BaseTestReadSortingDataset()
     {
         using (var jsonFetcher = new JsonFetcher())
         {
@@ -18,14 +18,7 @@ public class TestMyDoublyLinkedList
     [Fact]
     public void CanReadLijstAflopend2()
     {
-        IMyList<int> myIntList = new MyDoublyLinkedList<int>();
-
-        myIntList.ConvertFromArray(_dataset.LijstAflopend2);
-        
-        var lastIndex = _dataset.LijstAflopend2.Length - 1;
-        
-        Assert.Equal(_dataset.LijstAflopend2[0], myIntList.Get(0));
-        Assert.Equal(_dataset.LijstAflopend2[lastIndex], myIntList.Get(lastIndex));
+        myType.ConvertFromArray(_dataset.LijstAflopend2);
     }
     
     [Fact]

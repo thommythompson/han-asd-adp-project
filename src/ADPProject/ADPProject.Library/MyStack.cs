@@ -54,4 +54,14 @@ public class MyStack<T> : IMyStack<T>
                         throw new InvalidOperationException("The stack is empty.");
                 }
         }
+
+        public void ConvertFromArray(T[] array)
+        {
+                for (int i = 0; i < array.Length; i++)
+                {
+                        var value = array[i];
+            
+                        this.Push(value);
+                }
+        }
 }

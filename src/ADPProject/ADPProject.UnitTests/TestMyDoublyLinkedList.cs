@@ -82,4 +82,20 @@ public class TestMyDoublyLinkedList
         Assert.Equal(5, list.Length);
         Assert.True(list.Contains(4));
     }
+    
+    [Fact]
+    public void IndexOf()
+    {
+        IMyList<int> list = new MyDoublyLinkedList<int>();
+        
+        list.Add(1);
+        list.Add(2);
+        list.Add(3);
+        list.Add(4);
+        list.Add(4);
+        list.Add(4);
+        
+        Assert.Equal(6, list.Length);
+        Assert.Equal(3, list.IndexOf(4));
+    }
 }

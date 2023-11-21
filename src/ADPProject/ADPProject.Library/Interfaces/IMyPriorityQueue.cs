@@ -1,11 +1,8 @@
 ﻿namespace ADPProject.Library.Interfaces;
 
-public interface IMyPriorityQueue<T>
+public interface IMyPriorityQueue<T> : IConvertableFromArray<T>
 {
-    void Add(T item);
-    void Peek();
-    void Poll();
-    void Insert();
-    void FindMin();
-    void DeleteMin();
+    void Insert(int priority, T item);
+    T FindMin();
+    T DeleteMin();
 }

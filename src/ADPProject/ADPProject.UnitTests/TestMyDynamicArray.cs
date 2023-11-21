@@ -82,4 +82,20 @@ public class TestMyDynamicArray
         Assert.Equal(5, array.Length);
         Assert.True(array.Contains(4));
     }
+    
+    [Fact]
+    public void IndexOf()
+    {
+        IMyList<int> array = new MyDynamicArray<int>();
+        
+        array.Add(1);
+        array.Add(2);
+        array.Add(3);
+        array.Add(4);
+        array.Add(4);
+        array.Add(4);
+        
+        Assert.Equal(6, array.Length);
+        Assert.Equal(3, array.IndexOf(4));
+    }
 }

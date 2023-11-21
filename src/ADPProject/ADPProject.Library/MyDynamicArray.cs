@@ -1,4 +1,5 @@
-﻿using System.Net.Sockets;
+﻿using System.Collections;
+using System.Net.Sockets;
 using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
@@ -84,27 +85,41 @@ public class MyDynamicArray<T> : IMyList<T>
 
     public int IndexOf(T value)
     {
-        int index = -1;
-
         for (int i = 0; i < _valuesInArray; i++)
         {
             if (value.Equals(_array[i]))
             {
-                index = i;
+                return i;
             }
         }
-
-        if (-1 == index)
-        {
-            throw new KeyNotFoundException("The value is not found within this array");
-        }
-
-        return index;
+        
+        throw new KeyNotFoundException("The value is not found within this array");
     }
 
     private void CheckIfIndexOutOfRange(int index)
     {
         if (index < 0 || index >= _valuesInArray)
             throw new IndexOutOfRangeException($"Index {index} is out of range, cannot be below 0 or above {_valuesInArray}");
+    }
+
+    public IEnumerator<T> GetEnumerator()
+    {
+        for (int i = 0; i < _valuesInArray - 1; ++i)
+            yield return Get(i);
+    }
+
+    IEnumerator IEnumerable.GetEnumerator()
+    {
+        return GetEnumerator();
+    }
+    
+    public void ConvertFromArray(T[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            var value = array[i];
+            
+            this.Add(value);
+        }
     }
 }

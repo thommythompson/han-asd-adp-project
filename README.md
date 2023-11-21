@@ -13,7 +13,9 @@ The whole solution is written in C#, and contains 4 projects in total:
 
 ## Running the code
 
-To run the code without having to setup a local dev environment you could use the GitHub codespace feature (VS Code web using a cloud hosted dev container) or use VS Code's dev container feature locally. To create a dev container that contains all the required VS Code extensions you can use the `devcontainer.json` file that's available in the `.devcontainer` folder within this repository.
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/thommythompson/han-asd-adp-project)
+
+To run the code without having to setup a local dev environment you could use the GitHub codespace feature using the badge above. Follow the instruction below once the codespace has been opened.
 
 ### The C# Dev Kit
 
@@ -37,17 +39,11 @@ It might take a while but eventually the tests will show up in the test explorer
 
 ![1700228056206](./docs/image/README/1700228056206.png)
 
-### GitHub Codespace
-
-To setup a code space navigate to [https://github.com/codespaces](https://github.com/codespaces) and click on "New code space", next select the settings as shown below.
-
-![1700226905129](./docs/image/README/1700226905129.png)
-
-Click on "Create codespace", the codespace now will be build a new tab with VS Code for web will be opened, wait untill all the extensions are installed.
-
 ### Local devcontainer
 
-Make sure to have docker desktop installed and running.
+It is also possible to run the environment locally using a dev container, this avoids having to install dotnet SDK's and required extensions within your local environment, follow the steps below to do so.
+
+> **Prerequisite**: Make sure to have docker desktop installed and running.
 
 Install the "Dev Containers" extension within VS Code.
 
@@ -58,7 +54,6 @@ Open the command pallet and use the "> Dev Containers: Reopen in Container" comm
 ![1700229040089](./docs/image/README/1700229040089.png)
 
 Wait a while, it will build and start the dev container and reopen a new VS Code windows that is connected to the devcontainer.
-
 
 ## Links
 
