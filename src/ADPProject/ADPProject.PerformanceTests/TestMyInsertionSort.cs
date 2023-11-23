@@ -17,24 +17,26 @@ public class TestMyInsertionSort
     [Fact]
     public void Add()
     {
-        IMySortedList<int> list = GetList(Config.AddCount);
-        
-        var benchmarker = new Benchmarker(_outputHelper);
-        
+        IMyList<int> list = new MyDynamicArray<int>(); // Doubly linked list takes ages
+
         for (int i = 0; i < Config.AddCount; i++)
         {
             list.Add(i);
         }
         
+        var benchmarker = new Benchmarker(_outputHelper);
+
+        var mySortedList = new MyInsertionSort<int>(list); 
+        
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, list.Length);
+        Assert.Equal(Config.AddCount, mySortedList.Length);
     }
 
     [Fact]
     public void GetAsc()
     {
-        IMySortedList<int> list = GetList(Config.AddCount);
+        IMySortedList<int> list = GetList(Config.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -131,13 +133,15 @@ public class TestMyInsertionSort
 
     private IMySortedList<int> GetList(int size)
     {
-        IMySortedList<int> list = new MyInsertionSort<int>();
+        IMyList<int> list = new MyDynamicArray<int>(); // Doubly linked list takes ages
 
         for (int i = 0; i < size; i++)
         {
             list.Add(i);
         }
+        
+        IMySortedList<int> mySortedList = new MyInsertionSort<int>(list);
 
-        return list;
+        return mySortedList;
     }
 }
