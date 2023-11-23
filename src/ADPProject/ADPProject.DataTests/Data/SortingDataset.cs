@@ -1,3 +1,4 @@
+using ADPProject.DataTests.Converters;
 using Newtonsoft.Json;
 
 namespace ADPProject.Tests.Data;
@@ -28,10 +29,12 @@ public class SortingDataset
     public int[] LijstLeeg0 { get; set; }
     
     [JsonProperty("lijst_null_1")]
-    public int?[] LijstNull1 { get; set; }
+    [JsonConverter(typeof(NullableIntArrayConverter))]
+    public int[] LijstNull1 { get; set; }
     
-    [JsonProperty("lijst_null_4")]
-    public int?[] LijstNull3 { get; set; }
+    [JsonProperty("lijst_null_3")]
+    [JsonConverter(typeof(NullableIntArrayConverter))]
+    public int[] LijstNull3 { get; set; }
     
     [JsonProperty("lijst_onsorteerbaar_3")]
     public string[] LijstOnsorteerbaar3 { get; set; }
@@ -43,5 +46,5 @@ public class SortingDataset
     public int[] LijstWillekeurig10000 { get; set; }
     
     [JsonProperty("lijst_willekeurig_3")]
-    public float[] LijstWillekeurig { get; set; }
+    public int[] LijstWillekeurig3 { get; set; }
 }

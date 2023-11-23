@@ -1,14 +1,20 @@
-﻿using ADPProject.Library.Interfaces;
+﻿using System.Net;
+using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public class MyBinarySearch<T> : IMyBinarySearch<T> where T : IComparable<T>
+public class MyBinarySearch<T> : IMyBinarySearch<T> where T : IComparable<T?>
 {
     private IMySortedList<T> _list { get; init; }
 
     public MyBinarySearch(IMySortedList<T> list)
     {
         _list = list;
+    }
+    
+    public MyBinarySearch()
+    {
+        _list = new MyInsertionSort<T>();
     }
 
     public int Search(T target)
@@ -19,7 +25,7 @@ public class MyBinarySearch<T> : IMyBinarySearch<T> where T : IComparable<T>
         while (left <= right)
         {
             int mid = left + ((right - left) / 2);
-
+            
             int comparison = target.CompareTo(_list.Get(mid));
 
             if (comparison == 0)
@@ -41,6 +47,11 @@ public class MyBinarySearch<T> : IMyBinarySearch<T> where T : IComparable<T>
 
     public void ConvertFromArray(T[] array)
     {
-        throw new NotImplementedException();
+        for (int i = 0; i < array.Length; i++)
+        {
+            var value = array[i];
+            
+            _list.Add(value);
+        }
     }
 }

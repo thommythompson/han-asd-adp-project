@@ -1,8 +1,9 @@
-﻿using ADPProject.Tests.Data;
+﻿using ADPProject.DataTests.Helpers;
+using ADPProject.Tests.Data;
 
 namespace ADPProject.Tests;
 
-public class TestJsonReader
+public class TestJsonFetcher
 {
     [Fact]
     public void CanReadGraphDataset()

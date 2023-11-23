@@ -1,11 +1,12 @@
-﻿using ADPProject.Library.Interfaces;
+﻿using ADPProject.DataTests.Helpers;
+using ADPProject.Library.Interfaces;
 using ADPProject.Tests.Data;
 
 namespace ADPProject.DataTests.BaseTests;
 
-public class BaseTestReadSortingDataset<T> where T : IConvertableFromArray<T>
+public abstract class BaseTestReadSortingDataset
 {
-    private SortingDataset _dataset { get; init; } 
+    private SortingDataset? _dataset { get; init; } 
     
     public BaseTestReadSortingDataset()
     {
@@ -18,45 +19,108 @@ public class BaseTestReadSortingDataset<T> where T : IConvertableFromArray<T>
     [Fact]
     public void CanReadLijstAflopend2()
     {
-        myType.ConvertFromArray(_dataset.LijstAflopend2);
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstAflopend2);
     }
     
     [Fact]
     public void CanReadLijstOplopend2()
     {
-        IMyList<int> myIntList = new MyDoublyLinkedList<int>();
+        var adp = CreateIntAdp();
         
-        myIntList.ConvertFromArray(_dataset.LijstOplopend2);
-        
-        var lastIndex = _dataset.LijstOplopend2.Length - 1;
-        
-        Assert.Equal(_dataset.LijstOplopend2[0], myIntList.Get(0));
-        Assert.Equal(_dataset.LijstOplopend2[lastIndex], myIntList.Get(lastIndex));
+        adp.ConvertFromArray(_dataset.LijstOplopend2);
     }
     
     [Fact]
     public void CanReadLijstFloat8001()
     {
-        IMyList<float> myFloatList = new MyDoublyLinkedList<float>();
+        var adp = CreateFloatAdp();
         
-        myFloatList.ConvertFromArray(_dataset.LijstFloat8001);
-        
-        var lastIndex = _dataset.LijstFloat8001.Length - 1;
-        
-        Assert.Equal(_dataset.LijstFloat8001[0], myFloatList.Get(0));
-        Assert.Equal(_dataset.LijstFloat8001[lastIndex], myFloatList.Get(lastIndex));
+        adp.ConvertFromArray(_dataset.LijstFloat8001);
     }
     
     [Fact]
-    public void CanReadLijstWillekeurig()
+    public void CanReadLijstGesorteerdAflopend3()
     {
-        IMyList<float> myFloatList = new MyDoublyLinkedList<float>();
+        var adp = CreateIntAdp();
         
-        myFloatList.ConvertFromArray(_dataset.LijstWillekeurig);
-        
-        var lastIndex = _dataset.LijstWillekeurig.Length - 1;
-        
-        Assert.Equal(_dataset.LijstWillekeurig[0], myFloatList.Get(0));
-        Assert.Equal(_dataset.LijstWillekeurig[lastIndex], myFloatList.Get(lastIndex));
+        adp.ConvertFromArray(_dataset.LijstGesorteerdAflopend3);
     }
+    
+    [Fact]
+    public void CanReadLijstGesorteerdOplopend3()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstGesorteerdOplopend3);
+    }
+    
+    [Fact]
+    public void CanReadLijstHerhaald1000()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstHerhaald1000);
+    }
+    
+    [Fact]
+    public void CanReadLijstLeeg0()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstLeeg0);
+    }
+    
+    [Fact]
+    public void CanReadLijstNull1()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstNull1);
+    }
+    
+    [Fact]
+    public void CanReadLijstNull3()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstNull3);
+    }
+    
+    [Fact]
+    public void CanReadLijstOnsorteerbaar3()
+    {
+        var adp = CreateStringAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstOnsorteerbaar3);
+    }
+    
+    [Fact]
+    public void CanReadLijstOplopend10000()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstOplopend10000);
+    }
+    
+    [Fact]
+    public void CanReadLijstWillekeurig10000()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstWillekeurig10000);
+    }
+    
+    [Fact]
+    public void CanReadLijstWillekeurig3()
+    {
+        var adp = CreateIntAdp();
+        
+        adp.ConvertFromArray(_dataset.LijstWillekeurig3);
+    }
+    
+    public abstract IConvertableFromArray<int> CreateIntAdp();
+    public abstract IConvertableFromArray<float> CreateFloatAdp();
+    public abstract IConvertableFromArray<string> CreateStringAdp();
 }

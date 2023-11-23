@@ -49,11 +49,11 @@ Install the "Dev Containers" extension within VS Code.
 
 ![1700229032423](./docs/image/README/1700229032423.png)
 
-Open the command pallet and use the "> Dev Containers: Reopen in Container" command to connect to a devcontainer.
+Open the command pallet and use the "> Dev Containers: Reopen in Container" command to connect to the devcontainer.
 
 ![1700229040089](./docs/image/README/1700229040089.png)
 
-Wait a while, it will build and start the dev container and reopen a new VS Code windows that is connected to the devcontainer.
+Wait a while, it will build and start the dev container and reopen a new VS Code window that is connected to the devcontainer.
 
 ## Links
 

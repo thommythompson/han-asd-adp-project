@@ -117,4 +117,17 @@ public class MyPriorityQueue<T> : IMyPriorityQueue<T>
             this.Insert(i, value);
         }
     }
+    
+    public void ConvertFromNullableArray(T?[] array)
+    {
+        for (int i = 0; i < array.Length; i++)
+        {
+            var value = array[i];
+
+            if(null == value) 
+                continue;
+            
+            this.Insert(i, value);
+        }
+    }
 }
