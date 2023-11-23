@@ -2,7 +2,7 @@
 
 namespace ADPProject.Library;
 
-public class MyStack<T> : IMyStack<T>
+public class MyStack<T> : IMyStack<T> where T : IComparable<T>
 {
         private IMyList<T> elements { get; init; }
         

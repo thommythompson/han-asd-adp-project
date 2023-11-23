@@ -1,4 +1,5 @@
 ﻿using ADPProject.Library.Interfaces;
+using ADPProject.Tests.CustomTypes;
 
 namespace ADPProject.Tests;
 
@@ -57,5 +58,28 @@ public class TestMyStack
         stack.Push(1);
 
         Assert.False(stack.IsEmpty());
+    }
+    
+    [Fact]
+    public void ThePizzaTest()
+    {
+        var pizza1 = new Pizza()
+        {
+            Name = "Margherita",
+            NumberOfSlices = 8
+        };
+        
+        var pizza2 = new Pizza()
+        {
+            Name = "Bufalina",
+            NumberOfSlices = 8
+        };
+        
+        IMyStack<Pizza> stack = new MyStack<Pizza>();
+        
+        stack.Push(pizza1);
+        stack.Push(pizza2);
+        
+        Assert.Equal(pizza2, stack.Pop());
     }
 }

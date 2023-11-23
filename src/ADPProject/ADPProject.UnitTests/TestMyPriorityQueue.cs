@@ -1,4 +1,5 @@
 ﻿using ADPProject.Library.Interfaces;
+using ADPProject.Tests.CustomTypes;
 
 namespace ADPProject.Tests;
 
@@ -64,4 +65,26 @@ public class TestMyPriorityQueue
         return priorityQueue;
     }
     
+    [Fact]
+    public void ThePizzaTest()
+    {
+        var pizza1 = new Pizza()
+        {
+            Name = "Margherita",
+            NumberOfSlices = 8
+        };
+        
+        var pizza2 = new Pizza()
+        {
+            Name = "Bufalina",
+            NumberOfSlices = 8
+        };
+        
+        IMyPriorityQueue<Pizza> priorityQueue = new MyPriorityQueue<Pizza>();
+        
+        priorityQueue.Insert(1, pizza1);
+        priorityQueue.Insert(2, pizza2);
+        
+        Assert.Equal(pizza1, priorityQueue.DeleteMin());
+    }
 }

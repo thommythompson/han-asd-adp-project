@@ -1,6 +1,6 @@
 ﻿namespace ADPProject.Library.Interfaces;
 
-public interface IMyList<T> : IEnumerable<T>, IConvertableFromArray<T>
+public interface IMyList<T> : IEnumerable<T>, IConvertableFromArray<T> where T : IComparable<T>
 {
     public int Length { get; }
     public void Add(T value);

@@ -1,4 +1,5 @@
 using ADPProject.Library.Interfaces;
+using ADPProject.Tests.CustomTypes;
 
 namespace ADPProject.Tests;
 
@@ -64,5 +65,28 @@ public class TestMyDeque
         
         Assert.Equal(3, deque.Size);
         Assert.Equal(3, result);
+    }
+    
+    [Fact]
+    public void ThePizzaTest()
+    {
+        var pizza1 = new Pizza()
+        {
+            Name = "Margherita",
+            NumberOfSlices = 8
+        };
+        
+        var pizza2 = new Pizza()
+        {
+            Name = "Bufalina",
+            NumberOfSlices = 8
+        };
+        
+        IMyDeque<Pizza> deque = new MyDeque<Pizza>();
+        
+        deque.InsertRight(pizza1);
+        deque.InsertRight(pizza2);
+        
+        Assert.Equal(pizza2, deque.DeleteRight());
     }
 }

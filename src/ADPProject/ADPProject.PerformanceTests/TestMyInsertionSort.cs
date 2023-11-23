@@ -17,7 +17,7 @@ public class TestMyInsertionSort
     [Fact]
     public void Add()
     {
-        IMySortedList<int> list = new MyInsertionSort<int>();
+        IMySortedList<int> list = GetList(Config.AddCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -34,7 +34,7 @@ public class TestMyInsertionSort
     [Fact]
     public void GetAsc()
     {
-        IMySortedList<int> list = new MyInsertionSort<int>();
+        IMySortedList<int> list = GetList(Config.AddCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
@@ -49,7 +49,7 @@ public class TestMyInsertionSort
     [Fact]
     public void GetDesc()
     {
-        IMySortedList<int> list = new MyInsertionSort<int>();
+        IMySortedList<int> list = GetList(Config.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         

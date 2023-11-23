@@ -1,4 +1,5 @@
 ﻿using ADPProject.Library.Interfaces;
+using ADPProject.Tests.CustomTypes;
 
 namespace ADPProject.Tests;
 
@@ -97,5 +98,35 @@ public class TestMyDoublyLinkedList
         
         Assert.Equal(6, list.Length);
         Assert.Equal(3, list.IndexOf(4));
+    }
+    
+    [Fact]
+    public void ThePizzaTest()
+    {
+        var pizza1 = new Pizza()
+        {
+            Name = "Margherita",
+            NumberOfSlices = 8
+        };
+        
+        var pizza2 = new Pizza()
+        {
+            Name = "Bufalina",
+            NumberOfSlices = 8
+        };
+
+        IMyList<Pizza> array = new MyDynamicArray<Pizza>();
+        
+        array.Add(pizza1);
+        array.Add(pizza2);
+        
+        var pizza3 = new Pizza()
+        {
+            Name = "Bufalina",
+            NumberOfSlices = 8
+        };
+
+        Assert.True(array.Contains(pizza3));
+        Assert.Equal(1, array.IndexOf(pizza3));
     }
 }

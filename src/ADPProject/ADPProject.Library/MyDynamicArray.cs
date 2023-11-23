@@ -1,10 +1,9 @@
 ﻿using System.Collections;
-using System.Net.Sockets;
 using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public class MyDynamicArray<T> : IMyList<T> 
+public class MyDynamicArray<T> : IMyList<T> where T : IComparable<T>
 {
     private readonly int _initialCapacity = 8;
     
@@ -87,7 +86,7 @@ public class MyDynamicArray<T> : IMyList<T>
     {
         for (int i = 0; i < _valuesInArray; i++)
         {
-            if (value.Equals(_array[i]))
+            if (value.CompareTo(_array[i]) == 0)
             {
                 return i;
             }

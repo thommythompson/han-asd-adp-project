@@ -3,7 +3,7 @@ using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public class MyDoublyLinkedList<T> : IMyList<T>
+public class MyDoublyLinkedList<T> : IMyList<T> where T : IComparable<T>
 {
     private class Node
     {
@@ -138,7 +138,7 @@ public class MyDoublyLinkedList<T> : IMyList<T>
         
         while (current != null)
         {
-            if (value.Equals(current.Value))
+            if (value.CompareTo(current.Value) == 0)
             {
                 return current;
             }
