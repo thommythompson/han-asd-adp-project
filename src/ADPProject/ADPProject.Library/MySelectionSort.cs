@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public class MyInsertionSort<T> : IMySortedList<T> where T : IComparable<T>
+public class MySelectionSort<T> : IMySortedList<T> where T : IComparable<T>
 {
     private IMyList<T> _list { get; }
     
-    public MyInsertionSort(IMyList<T> list)
+    public MySelectionSort(IMyList<T> list)
     {
         _list = list;
         
@@ -19,28 +19,36 @@ public class MyInsertionSort<T> : IMySortedList<T> where T : IComparable<T>
         Sort();
     }
     
-    public MyInsertionSort()
+    public MySelectionSort()
     {
         _list = new MyDynamicArray<T>();
     }
     
-    private IMyList<T> Sort()
+    public IMyList<T> Sort()
     {
-        for (int i = 1; i < _list.Length; i++)
+        for (int i = 0; i < _list.Length - 1; i++)
         {
-            T current = _list.Get(i);
-            int j = i - 1;
+            int minIndex = i;
             
-            while (j >= 0 && _list.Get(j).CompareTo(current) > 0)
+            for (int j = i + 1; j < _list.Length; j++)
             {
-                _list.Set(j + 1, _list.Get(j));
-                j--;
+                if (_list.Get(j).CompareTo(_list.Get(minIndex)) < 0)
+                {
+                    minIndex = j;
+                }
             }
-
-            _list.Set(j + 1, current);
+            
+            Swap(_list, minIndex, i);
         }
 
         return _list;
+    }
+    
+    private void Swap(IMyList<T> list, int i, int j)
+    {
+        T temp = list.Get(i);
+        list.Set(i, list.Get(j));
+        list.Set(j, temp);
     }
     
     public IEnumerator<T> GetEnumerator()

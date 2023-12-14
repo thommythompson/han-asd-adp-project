@@ -1,13 +1,13 @@
-﻿using System.Collections;
+using System.Collections;
 using ADPProject.Library.Interfaces;
 
 namespace ADPProject.Library;
 
-public class MyInsertionSort<T> : IMySortedList<T> where T : IComparable<T>
+public class MyQuickSort<T> : IMySortedList<T> where T : IComparable<T>
 {
     private IMyList<T> _list { get; }
     
-    public MyInsertionSort(IMyList<T> list)
+    public MyQuickSort(IMyList<T> list)
     {
         _list = list;
         
@@ -19,28 +19,55 @@ public class MyInsertionSort<T> : IMySortedList<T> where T : IComparable<T>
         Sort();
     }
     
-    public MyInsertionSort()
+    public MyQuickSort()
     {
         _list = new MyDynamicArray<T>();
     }
     
     private IMyList<T> Sort()
     {
-        for (int i = 1; i < _list.Length; i++)
-        {
-            T current = _list.Get(i);
-            int j = i - 1;
-            
-            while (j >= 0 && _list.Get(j).CompareTo(current) > 0)
-            {
-                _list.Set(j + 1, _list.Get(j));
-                j--;
-            }
+        if (_list.Length <= 1)
+            return _list;
 
-            _list.Set(j + 1, current);
-        }
+        QuickSort(_list, 0, _list.Length - 1);
 
         return _list;
+    }
+    
+    private void QuickSort(IMyList<T> list, int left, int right)
+    {
+        if (left < right)
+        {
+            int partitionIndex = Partition(list, left, right);
+
+            QuickSort(list, left, partitionIndex - 1);
+            QuickSort(list, partitionIndex + 1, right);
+        }
+    }
+    
+    private int Partition(IMyList<T> list, int left, int right)
+    {
+        T pivot = list.Get(right);
+        int i = left - 1;
+
+        for (int j = left; j < right; j++)
+        {
+            if (list.Get(j).CompareTo(pivot) <= 0)
+            {
+                i++;
+                Swap(list, i, j);
+            }
+        }
+
+        Swap(list, i + 1, right);
+        return i + 1;
+    }
+
+    private void Swap(IMyList<T> list, int i, int j)
+    {
+        T temp = list.Get(i);
+        list.Set(i, list.Get(j));
+        list.Set(j, temp);
     }
     
     public IEnumerator<T> GetEnumerator()

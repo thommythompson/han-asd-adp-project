@@ -92,7 +92,7 @@ public class MyDoublyLinkedList<T> : IMyList<T> where T : IComparable<T>
         
         while (current != null)
         {
-            if (current.Value.Equals(value))
+            if (current.Value.CompareTo(value) == 0)
             {
                 return index;
             }
@@ -183,19 +183,6 @@ public class MyDoublyLinkedList<T> : IMyList<T> where T : IComparable<T>
         for (int i = 0; i < array.Length; i++)
         {
             var value = array[i];
-            
-            this.Add(value);
-        }
-    }
-    
-    public void ConvertFromNullableArray(T?[] array)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            var value = array[i];
-
-            if(null == value) 
-                continue;
             
             this.Add(value);
         }

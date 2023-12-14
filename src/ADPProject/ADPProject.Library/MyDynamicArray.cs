@@ -121,17 +121,4 @@ public class MyDynamicArray<T> : IMyList<T> where T : IComparable<T>
             this.Add(value);
         }
     }
-    
-    public void ConvertFromNullableArray(T?[] array)
-    {
-        for (int i = 0; i < array.Length; i++)
-        {
-            var value = array[i];
-
-            if(null == value) 
-                continue;
-            
-            this.Add(value);
-        }
-    }
 }

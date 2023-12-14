@@ -5,12 +5,12 @@ namespace ADPProject.Library;
 public class MyStack<T> : IMyStack<T> where T : IComparable<T>
 {
         private IMyList<T> elements { get; init; }
-        
+
         public int Size => elements.Length;
-        
+
         public MyStack()
-        {
-                elements = new MyDoublyLinkedList<T>();
+        { 
+                elements = new MyDynamicArray<T>();
         }
 
         public void Push(T item)
@@ -60,19 +60,6 @@ public class MyStack<T> : IMyStack<T> where T : IComparable<T>
                 for (int i = 0; i < array.Length; i++)
                 {
                         var value = array[i];
-            
-                        this.Push(value);
-                }
-        }
-        
-        public void ConvertFromNullableArray(T?[] array)
-        {
-                for (int i = 0; i < array.Length; i++)
-                {
-                        var value = array[i];
-
-                        if(null == value) 
-                                continue;
             
                         this.Push(value);
                 }
