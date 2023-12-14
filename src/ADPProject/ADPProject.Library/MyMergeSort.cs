@@ -5,7 +5,7 @@ namespace ADPProject.Library;
 
 public class MyMergeSort<T> : IMySortedList<T> where T : IComparable<T>
 {
-    private IMyList<T> List { get; }
+    private IMyList<T> List { get; set;  }
     
     public MyMergeSort(IMyList<T> list)
     {
@@ -33,33 +33,37 @@ public class MyMergeSort<T> : IMySortedList<T> where T : IComparable<T>
 
         return List;
     }
-    
+
     private async Task MergeSort(IMyList<T> list, int left, int right)
     {
         if (left < right)
         {
             int mid = (left + right) / 2;
 
-            Task leftSort = MergeSort(list, left, mid);
-            Task rightSort = MergeSort(list, mid + 1, right);
-
-            await Task.WhenAll(leftSort, rightSort);
+            await MergeSort(list, left, mid);
+            await MergeSort(list, mid + 1, right);
 
             Merge(list, left, mid, right);
         }
     }
-    
+
     private void Merge(IMyList<T> list, int left, int mid, int right)
     {
         int n1 = mid - left + 1;
         int n2 = right - mid;
 
-        T[] leftArray = list.Take(n1).ToArray();
-        T[] rightArray = list.Skip(n1).Take(n2).ToArray();
-        
+        T[] leftArray = new T[n1];
+        T[] rightArray = new T[n2];
+
+        for (int i = 0; i < n1; i++)
+            leftArray[i] = list.Get(left + i);
+
+        for (int j = 0; j < n2; j++)
+            rightArray[j] = list.Get(mid + 1 + j);
+
         int k = left;
         int leftIndex = 0, rightIndex = 0;
-        
+
         while (leftIndex < n1 && rightIndex < n2)
         {
             if (leftArray[leftIndex].CompareTo(rightArray[rightIndex]) <= 0)
@@ -69,26 +73,27 @@ public class MyMergeSort<T> : IMySortedList<T> where T : IComparable<T>
             }
             else
             {
-                list.Set(k, leftArray[rightIndex]);
+                list.Set(k, rightArray[rightIndex]);
                 rightIndex++;
             }
             k++;
         }
-        
+
         while (leftIndex < n1)
         {
             list.Set(k, leftArray[leftIndex]);
             leftIndex++;
             k++;
         }
-        
+
         while (rightIndex < n2)
         {
-            list.Set(k, leftArray[rightIndex]);
+            list.Set(k, rightArray[rightIndex]);
             rightIndex++;
             k++;
         }
     }
+
     
     public IEnumerator<T> GetEnumerator()
     {
@@ -139,11 +144,15 @@ public class MyMergeSort<T> : IMySortedList<T> where T : IComparable<T>
 
     public void ConvertFromArray(T[] array)
     {
+        List = new MyDynamicArray<T>();
+        
         for (int i = 0; i < array.Length; i++)
         {
             var value = array[i];
             
-            this.Add(value);
+            List.Add(value);
         }
+
+        Sort();
     }
 }

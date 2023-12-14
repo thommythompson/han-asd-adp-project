@@ -5,13 +5,13 @@ namespace ADPProject.Library;
 
 public class MySelectionSort<T> : IMySortedList<T> where T : IComparable<T>
 {
-    private IMyList<T> _list { get; }
+    private IMyList<T> List { get; set;  }
     
     public MySelectionSort(IMyList<T> list)
     {
-        _list = list;
+        List = list;
         
-        if (_list.Length <= 1)
+        if (List.Length <= 1)
         {
             return;
         }
@@ -21,27 +21,27 @@ public class MySelectionSort<T> : IMySortedList<T> where T : IComparable<T>
     
     public MySelectionSort()
     {
-        _list = new MyDynamicArray<T>();
+        List = new MyDynamicArray<T>();
     }
     
     public IMyList<T> Sort()
     {
-        for (int i = 0; i < _list.Length - 1; i++)
+        for (int i = 0; i < List.Length - 1; i++)
         {
             int minIndex = i;
             
-            for (int j = i + 1; j < _list.Length; j++)
+            for (int j = i + 1; j < List.Length; j++)
             {
-                if (_list.Get(j).CompareTo(_list.Get(minIndex)) < 0)
+                if (List.Get(j).CompareTo(List.Get(minIndex)) < 0)
                 {
                     minIndex = j;
                 }
             }
             
-            Swap(_list, minIndex, i);
+            Swap(List, minIndex, i);
         }
 
-        return _list;
+        return List;
     }
     
     private void Swap(IMyList<T> list, int i, int j)
@@ -53,7 +53,7 @@ public class MySelectionSort<T> : IMySortedList<T> where T : IComparable<T>
     
     public IEnumerator<T> GetEnumerator()
     {
-        return _list.GetEnumerator();
+        return List.GetEnumerator();
     }
 
     IEnumerator IEnumerable.GetEnumerator()
@@ -63,48 +63,52 @@ public class MySelectionSort<T> : IMySortedList<T> where T : IComparable<T>
 
     public int Length
     {
-        get => _list.Length;
+        get => List.Length;
     }
     public void Add(T value)
     {
-        _list.Add(value);
+        List.Add(value);
         Sort();
     }
 
     public T Get(int index)
     {
-        return _list.Get(index);
+        return List.Get(index);
     }
 
     public void RemoveByIndex(int index)
     {
-        _list.RemoveByIndex(index);
+        List.RemoveByIndex(index);
         Sort();
     }
 
     public void RemoveByValue(T value)
     {
-        _list.RemoveByValue(value);
+        List.RemoveByValue(value);
         Sort();
     }
 
     public bool Contains(T value)
     {
-        return _list.Contains(value);
+        return List.Contains(value);
     }
 
     public int IndexOf(T value)
     {
-        return _list.IndexOf(value);
+        return List.IndexOf(value);
     }
 
     public void ConvertFromArray(T[] array)
     {
+        List = new MyDynamicArray<T>();
+        
         for (int i = 0; i < array.Length; i++)
         {
             var value = array[i];
             
-            this.Add(value);
+            List.Add(value);
         }
+
+        Sort();
     }
 }
