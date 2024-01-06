@@ -12,6 +12,6 @@ public class TestMyMergeSort : IMySortedListBaseTest
 
     public override IMySortedList<T> GetMySortedList<T>(IMyList<T> list)
     {
-        return new MyMergeSort<T>();
+        return new MyMergeSort<T>(list);
     }
 }

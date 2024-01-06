@@ -12,6 +12,6 @@ public class TestMySelectionSort : IMySortedListBaseTest
 
     public override IMySortedList<T> GetMySortedList<T>(IMyList<T> list)
     {
-        return new MySelectionSort<T>();
+        return new MySelectionSort<T>(list);
     }
 }

@@ -26,7 +26,26 @@ public abstract class IMySortedListBaseTest
         
         var benchmarker = new Benchmarker(_outputHelper);
 
-        var mySortedList = GetMySortedList(list); 
+        var mySortedList = GetMySortedList(list);
+        
+        benchmarker.Stop();
+        
+        Assert.Equal(Config.AddCount, mySortedList.Length);
+    }
+    
+    [Fact]
+    public void AddSameNumbers()
+    {
+        IMyList<int> list = new MyDynamicArray<int>();
+
+        for (int i = 0; i < Config.AddCount; i++)
+        {
+            list.Add(1);
+        }
+        
+        var benchmarker = new Benchmarker(_outputHelper);
+
+        var mySortedList = GetMySortedList(list);
         
         benchmarker.Stop();
         
@@ -61,6 +80,30 @@ public abstract class IMySortedListBaseTest
         }
 
         benchmarker.Stop();
+    }
+    
+    [Fact]
+    public void GetSameNumbers()
+    {
+        IMyList<int> list = new MyDynamicArray<int>();
+
+        for (int i = 0; i < Config.GetCount; i++)
+        {
+            list.Add(1);
+        }
+
+        var mySortedList = GetMySortedList(list);
+        
+        var benchmarker = new Benchmarker(_outputHelper);
+        
+        for (int i = Config.GetCount - 1; i > 0; i--)
+        {
+            mySortedList.Get(i);
+        }
+
+        benchmarker.Stop();
+        
+        Assert.Equal(Config.GetCount, mySortedList.Length);
     }
     
     [Fact]

@@ -12,6 +12,6 @@ public class TestMyQuickSort : IMySortedListBaseTest
 
     public override IMySortedList<T> GetMySortedList<T>(IMyList<T> list)
     {
-        return new MyQuickSort<T>();
+        return new MyQuickSort<T>(list);
     }
 }
