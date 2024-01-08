@@ -21,7 +21,7 @@ public class TestMyGraph
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             graph.AddVertex(i);
         }
@@ -36,13 +36,13 @@ public class TestMyGraph
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             graph.AddVertex(i);
         }
 
         var prev = 0;
-        for (int i = 1; i < Config.AddCount; i++)
+        for (int i = 1; i < GeneralTestConfig.AddCount; i++)
         {
             graph.AddEdge(prev,i);
             prev++;
@@ -56,13 +56,13 @@ public class TestMyGraph
     {
         IMyGraph<int> graph = new MyGraph<int>();
         
-        for (int i = 0; i < Config.MiscCount; i++)
+        for (int i = 0; i < GeneralTestConfig.MiscCount; i++)
         {
             graph.AddVertex(i);
         }
 
         var prev = 0;
-        for (int i = 1; i < Config.MiscCount; i++)
+        for (int i = 1; i < GeneralTestConfig.MiscCount; i++)
         {
             graph.AddEdge(prev,i);
             prev++;
@@ -71,7 +71,7 @@ public class TestMyGraph
         var benchmarker = new Benchmarker(_outputHelper);
         
         prev = 0;
-        for (int i = 10; i < Config.MiscCount; i++)
+        for (int i = 10; i < GeneralTestConfig.MiscCount; i++)
         {
             graph.AreAdjacent(prev,i);
             prev++;
@@ -85,13 +85,13 @@ public class TestMyGraph
     {
         IMyGraph<int> graph = new MyGraph<int>();
         
-        for (int i = 0; i < Config.MiscCount; i++)
+        for (int i = 0; i < GeneralTestConfig.MiscCount; i++)
         {
             graph.AddVertex(i);
         }
 
         var prev = 0;
-        for (int i = 1; i < Config.MiscCount; i++)
+        for (int i = 1; i < GeneralTestConfig.MiscCount; i++)
         {
             graph.AddEdge(prev,i);
             prev++;
@@ -99,7 +99,7 @@ public class TestMyGraph
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 1; i < Config.MiscCount; i++)
+        for (int i = 1; i < GeneralTestConfig.MiscCount; i++)
         {
             _ = graph.Neighbors(i);
             prev++;
@@ -113,13 +113,13 @@ public class TestMyGraph
     {
         IMyGraph<int> graph = new MyGraph<int>();
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.AddVertex(i);
         }
 
         var prev = 0;
-        for (int i = 1; i < Config.DeleteCount; i++)
+        for (int i = 1; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.AddEdge(prev,i);
             prev++;
@@ -127,7 +127,7 @@ public class TestMyGraph
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.RemoveVertex(i);
             prev++;
@@ -141,13 +141,13 @@ public class TestMyGraph
     {
         IMyGraph<int> graph = new MyGraph<int>();
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.AddVertex(i);
         }
 
         var prev = 0;
-        for (int i = 1; i < Config.DeleteCount; i++)
+        for (int i = 1; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.AddEdge(prev,i);
             prev++;
@@ -156,7 +156,7 @@ public class TestMyGraph
         var benchmarker = new Benchmarker(_outputHelper);
         
         prev = 0;
-        for (int i = 1; i < Config.DeleteCount; i++)
+        for (int i = 1; i < GeneralTestConfig.DeleteCount; i++)
         {
             graph.RemoveEdge(prev,i);
             prev++;

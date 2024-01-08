@@ -42,7 +42,7 @@ public class TestMyDijkstraShortestPathAlgorithm
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.MiscCount; i++)
+        for (int i = 0; i < GeneralTestConfig.MiscCount; i++)
         {
             _ = dijkstra.GetShortestPathFrom('A');
         }

@@ -20,17 +20,17 @@ public class TestMyHashTable
         IMyHashTable<int> hashTable = new MyHashTable<int>();
         
         var benchmarker = new Benchmarker(_outputHelper);
-
-        int value;
-        for (int i = 0; i < Config.AddCount; i++)
+        
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
-            value = + 1 * 100;
-            hashTable.Add(value.ToString(), value);
+            int value = i * 9 * 127;
+            string key = value.ToString();
+            hashTable.Add(key, value);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, hashTable.Size);
+        Assert.Equal(GeneralTestConfig.AddCount, hashTable.Size);
     }
     
     [Fact]
@@ -38,47 +38,45 @@ public class TestMyHashTable
     {
         IMyHashTable<int> hashTable = new MyHashTable<int>();
         
-        int value;
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
-            value = + 1 * 100;
-            hashTable.Add(value.ToString(), value);
+            int value = i * 9 * 127;
+            string key = value.ToString();
+            hashTable.Add(key, value);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
-
-        int key;
-        for (int i = 0; i < Config.AddCount; i++)
+        
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
-            key = + 1 * 100;
-            hashTable.GetValuesForKey(key.ToString());
+            int value = i * 9 * 127;
+            string key = value.ToString();
+            hashTable.GetValuesForKey(key);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, hashTable.Size);
+        Assert.Equal(GeneralTestConfig.GetCount, hashTable.Size);
     }
 
     [Fact]
     public void Remove()
     {
         IMyHashTable<int> hashTable = new MyHashTable<int>();
-
-        string key;
-        int value;
-        for (int i = 0; i < Config.AddCount; i++)
+        
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
-            value = + 1 * 100;
-            key = value.ToString();
+            int value = i * 9 * 127;
+            string key = value.ToString();
             hashTable.Add(key, value);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
-            value = + 1 * 100;
-            key = value.ToString();
+            int value = i * 9 * 127;
+            string key = value.ToString();
             hashTable.Remove(key, value);
         }
         

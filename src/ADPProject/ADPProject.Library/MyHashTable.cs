@@ -55,18 +55,19 @@ public class MyHashTable<TValue> : IMyHashTable<TValue>
     {
         int index = GetBucketIndex(key);
         KeyValuePair<string, TValue> searchPair = new KeyValuePair<string, TValue>(key, value);
-        
-        bool removed = _buckets[index].Remove(searchPair);
-        if (removed)
+
+        bool lastRemoved;
+        bool removed = lastRemoved = _buckets[index].Remove(searchPair);
+        if (lastRemoved)
         {
             Size--;
         }
-        while (removed)
+        while (lastRemoved)
         {
-            removed = _buckets[index].Remove(searchPair);
-            if (removed)
+            lastRemoved = _buckets[index].Remove(searchPair);
+            if (lastRemoved)
             {
-                
+                Size--;
             }
         }
 

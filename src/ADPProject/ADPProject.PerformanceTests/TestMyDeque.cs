@@ -21,14 +21,14 @@ public class TestMyDeque
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             deque.InsertLeft(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, deque.Size);
+        Assert.Equal(GeneralTestConfig.AddCount, deque.Size);
     }
 
     [Fact]
@@ -38,24 +38,24 @@ public class TestMyDeque
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             deque.InsertRight(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, deque.Size);
+        Assert.Equal(GeneralTestConfig.AddCount, deque.Size);
     }
     
     [Fact]
     public void DeleteLeft()
     {
-        IMyDeque<int> deque = GetDeque(Config.DeleteCount);
+        IMyDeque<int> deque = GetDeque(GeneralTestConfig.DeleteCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             _ = deque.DeleteLeft();
         }
@@ -68,11 +68,11 @@ public class TestMyDeque
     [Fact]
     public void DeleteRight()
     {
-        IMyDeque<int> deque = GetDeque(Config.DeleteCount);
+        IMyDeque<int> deque = GetDeque(GeneralTestConfig.DeleteCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             _ = deque.DeleteRight();
         }

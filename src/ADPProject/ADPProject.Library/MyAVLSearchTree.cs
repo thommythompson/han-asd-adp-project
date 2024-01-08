@@ -13,7 +13,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
 
     private int Max(int a, int b)
     {
-        return (a > b) ? a : b;
+        return a > b ? a : b;
     }
 
     private int GetBalance(AVLTreeNode<T> node)

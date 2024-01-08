@@ -19,7 +19,7 @@ public abstract class IMySortedListBaseTest
     {
         IMyList<int> list = new MyDynamicArray<int>(); // Doubly linked list takes ages
 
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < SortedListTestConfig.AddCount; i++)
         {
             list.Add(i);
         }
@@ -30,7 +30,7 @@ public abstract class IMySortedListBaseTest
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, mySortedList.Length);
+        Assert.Equal(SortedListTestConfig.AddCount, mySortedList.Length);
     }
     
     [Fact]
@@ -38,7 +38,7 @@ public abstract class IMySortedListBaseTest
     {
         IMyList<int> list = new MyDynamicArray<int>();
 
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < SortedListTestConfig.AddCount; i++)
         {
             list.Add(1);
         }
@@ -49,17 +49,17 @@ public abstract class IMySortedListBaseTest
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, mySortedList.Length);
+        Assert.Equal(SortedListTestConfig.AddCount, mySortedList.Length);
     }
 
     [Fact]
     public void GetAsc()
     {
-        IMySortedList<int> list = GetList(Config.GetCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < SortedListTestConfig.GetCount; i++)
         {
             _ = list.Get(i);
         }
@@ -70,11 +70,11 @@ public abstract class IMySortedListBaseTest
     [Fact]
     public void GetDesc()
     {
-        IMySortedList<int> list = GetList(Config.GetCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.GetCount - 1; i > 0; i--)
+        for (int i = SortedListTestConfig.GetCount - 1; i > 0; i--)
         {
             list.Get(i);
         }
@@ -87,7 +87,7 @@ public abstract class IMySortedListBaseTest
     {
         IMyList<int> list = new MyDynamicArray<int>();
 
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < SortedListTestConfig.GetCount; i++)
         {
             list.Add(1);
         }
@@ -96,24 +96,24 @@ public abstract class IMySortedListBaseTest
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.GetCount - 1; i > 0; i--)
+        for (int i = SortedListTestConfig.GetCount - 1; i > 0; i--)
         {
             mySortedList.Get(i);
         }
 
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, mySortedList.Length);
+        Assert.Equal(SortedListTestConfig.GetCount, mySortedList.Length);
     }
     
     [Fact]
     public void RemoveByIndexZero()
     {
-        IMySortedList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < SortedListTestConfig.DeleteCount; i++)
         {
             list.RemoveByIndex(0);
         }
@@ -126,11 +126,11 @@ public abstract class IMySortedListBaseTest
     [Fact]
     public void RemoveByIndexDesc()
     {
-        IMySortedList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.DeleteCount - 1; i >= 0; i--)
+        for (int i = SortedListTestConfig.DeleteCount - 1; i >= 0; i--)
         {
             list.RemoveByIndex(i);
         }
@@ -143,11 +143,11 @@ public abstract class IMySortedListBaseTest
     [Fact]
     public void RemoveByValueAsc()
     {
-        IMySortedList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < SortedListTestConfig.DeleteCount; i++)
         {
             list.RemoveByValue(i);
         }
@@ -160,11 +160,11 @@ public abstract class IMySortedListBaseTest
     [Fact]
     public void RemoveByValueDesc()
     {
-        IMySortedList<int> list = GetList(Config.DeleteCount);
+        IMySortedList<int> list = GetList(SortedListTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.DeleteCount - 1; i >= 0; i--)
+        for (int i = SortedListTestConfig.DeleteCount - 1; i >= 0; i--)
         {
             list.RemoveByValue(i);
         }

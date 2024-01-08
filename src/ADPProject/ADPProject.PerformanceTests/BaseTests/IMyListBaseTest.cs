@@ -21,24 +21,24 @@ public abstract class IMyListBaseTest
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             list.Add(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, list.Length);
+        Assert.Equal(GeneralTestConfig.AddCount, list.Length);
     }
 
     [Fact]
     public void GetAsc()
     {
-        IMyList<int> list = GetList(Config.GetCount);
+        IMyList<int> list = GetList(GeneralTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             _ = list.Get(i);
         }
@@ -49,11 +49,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void GetDesc()
     {
-        IMyList<int> list = GetList(Config.GetCount);
+        IMyList<int> list = GetList(GeneralTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.GetCount - 1; i > 0; i--)
+        for (int i = GeneralTestConfig.GetCount - 1; i > 0; i--)
         {
             list.Get(i);
         }
@@ -64,11 +64,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void SetAsc()
     {
-        IMyList<int> list = GetList(Config.SetCount);
+        IMyList<int> list = GetList(GeneralTestConfig.SetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.SetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.SetCount; i++)
         {
             list.Set(i, i + 1);
         }
@@ -79,11 +79,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void SetDesc()
     {
-        IMyList<int> list = GetList(Config.SetCount);
+        IMyList<int> list = GetList(GeneralTestConfig.SetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.SetCount - 1; i > 0; i--)
+        for (int i = GeneralTestConfig.SetCount - 1; i > 0; i--)
         {
             list.Set(i, i + 1);
         }
@@ -94,11 +94,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void RemoveByIndexZero()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMyList<int> list = GetList(GeneralTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             list.RemoveByIndex(0);
         }
@@ -111,11 +111,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void RemoveByIndexDesc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMyList<int> list = GetList(GeneralTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.DeleteCount - 1; i >= 0; i--)
+        for (int i = GeneralTestConfig.DeleteCount - 1; i >= 0; i--)
         {
             list.RemoveByIndex(i);
         }
@@ -128,11 +128,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void RemoveByValueAsc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMyList<int> list = GetList(GeneralTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             list.RemoveByValue(i);
         }
@@ -145,11 +145,11 @@ public abstract class IMyListBaseTest
     [Fact]
     public void RemoveByValueDesc()
     {
-        IMyList<int> list = GetList(Config.DeleteCount);
+        IMyList<int> list = GetList(GeneralTestConfig.DeleteCount);
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = Config.DeleteCount - 1; i >= 0; i--)
+        for (int i = GeneralTestConfig.DeleteCount - 1; i >= 0; i--)
         {
             list.RemoveByValue(i);
         }

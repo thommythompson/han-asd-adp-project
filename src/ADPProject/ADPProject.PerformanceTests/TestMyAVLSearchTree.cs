@@ -20,14 +20,14 @@ public class TestMyAVLSearchTree
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             avl.Insert(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, avl.InOrder().Count);
+        Assert.Equal(GeneralTestConfig.AddCount, avl.InOrder().Count);
     }
     
     [Fact]
@@ -35,14 +35,14 @@ public class TestMyAVLSearchTree
     {
         var avl = new MyAVLSearchTree<int>();
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             avl.Insert(i);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             avl.Remove(i);
         }
@@ -57,21 +57,21 @@ public class TestMyAVLSearchTree
     {
         var avl = new MyAVLSearchTree<int>();
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.Insert(i);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.Find(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, avl.InOrder().Count);
+        Assert.Equal(GeneralTestConfig.GetCount, avl.InOrder().Count);
     }
     
     [Fact]
@@ -79,21 +79,21 @@ public class TestMyAVLSearchTree
     {
         var avl = new MyAVLSearchTree<int>();
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.Insert(i);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.FindMin();
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, avl.InOrder().Count);
+        Assert.Equal(GeneralTestConfig.GetCount, avl.InOrder().Count);
     }
     
     [Fact]
@@ -101,20 +101,20 @@ public class TestMyAVLSearchTree
     {
         var avl = new MyAVLSearchTree<int>();
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.Insert(i);
         }
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             avl.FindMax();
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, avl.InOrder().Count);
+        Assert.Equal(GeneralTestConfig.GetCount, avl.InOrder().Count);
     }
 }

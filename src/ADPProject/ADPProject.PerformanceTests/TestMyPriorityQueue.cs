@@ -21,7 +21,7 @@ public class TestMyPriorityQueue
 
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             priorityQueue.Insert(i * 2, i * 3);
         }
@@ -32,11 +32,11 @@ public class TestMyPriorityQueue
     [Fact]
     public void FindMin()
     {
-        IMyPriorityQueue<int> priorityQueue = GetPriorityQueue(Config.GetCount);
+        IMyPriorityQueue<int> priorityQueue = GetPriorityQueue(GeneralTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             priorityQueue.FindMin();
         }
@@ -47,11 +47,11 @@ public class TestMyPriorityQueue
     [Fact]
     public void DeleteMin()
     {
-        IMyPriorityQueue<int> priorityQueue = GetPriorityQueue(Config.DeleteCount);
+        IMyPriorityQueue<int> priorityQueue = GetPriorityQueue(GeneralTestConfig.DeleteCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             _ = priorityQueue.DeleteMin();
         }

@@ -21,24 +21,24 @@ public class TestMyStack
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.AddCount; i++)
+        for (int i = 0; i < GeneralTestConfig.AddCount; i++)
         {
             stack.Push(i);
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.AddCount, stack.Size);
+        Assert.Equal(GeneralTestConfig.AddCount, stack.Size);
     }
     
     [Fact]
     public void Pop()
     {
-        IMyStack<int> stack = GetStack(Config.DeleteCount);
+        IMyStack<int> stack = GetStack(GeneralTestConfig.DeleteCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
 
-        for (int i = 0; i < Config.DeleteCount; i++)
+        for (int i = 0; i < GeneralTestConfig.DeleteCount; i++)
         {
             stack.Pop();
         }
@@ -51,18 +51,18 @@ public class TestMyStack
     [Fact]
     public void Top()
     {
-        IMyStack<int> stack = GetStack(Config.GetCount);
+        IMyStack<int> stack = GetStack(GeneralTestConfig.GetCount);
         
         var benchmarker = new Benchmarker(_outputHelper);
         
-        for (int i = 0; i < Config.GetCount; i++)
+        for (int i = 0; i < GeneralTestConfig.GetCount; i++)
         {
             stack.Top();
         }
         
         benchmarker.Stop();
         
-        Assert.Equal(Config.GetCount, stack.Size);
+        Assert.Equal(GeneralTestConfig.GetCount, stack.Size);
     }
 
     public IMyStack<int> GetStack(int size)

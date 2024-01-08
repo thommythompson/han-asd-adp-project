@@ -17,13 +17,13 @@ public class TestMyBinarySearch
     [Fact]
     public void Search()
     {
-        IMySortedList<int> list = GetInsertionSort(Config.AddCount);
+        IMySortedList<int> list = GetInsertionSort(GeneralTestConfig.AddCount);
 
         IMyBinarySearch<int> binarySearch = new MyBinarySearch<int>(list);
         
         var benchmarker = new Benchmarker(_outputHelper);
 
-        binarySearch.Search(Config.AddCount - 1);
+        binarySearch.Search(GeneralTestConfig.AddCount - 1);
         
         benchmarker.Stop();
     }
