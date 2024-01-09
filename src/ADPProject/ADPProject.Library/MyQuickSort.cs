@@ -38,47 +38,31 @@ public class MyQuickSort<T> : IMySortedList<T> where T : IComparable<T>
     {
         if (left < right)
         {
-            int[] indices = ThreeWayPartition(list, left, right);
+            int pivotIndex = Partition(list, left, right);
 
-            QuickSort(list, left, indices[0] - 1);
-            QuickSort(list, indices[1] + 1, right);
+            QuickSort(list, left, pivotIndex - 1);
+            QuickSort(list, pivotIndex + 1, right);
         }
     }
 
-    private int[] ThreeWayPartition(IMyList<T> list, int left, int right)
+    private int Partition(IMyList<T> list, int left, int right)
     {
         int pivotIndex = DeterminePivotIndex(list, left, right);
-
         T pivot = list.Get(pivotIndex);
         Swap(list, pivotIndex, right);
 
-        int low = left - 1, high = right;
         int i = left;
-
-        while (i < high)
+        for (int j = left; j < right; j++)
         {
-            int cmp = list.Get(i).CompareTo(pivot);
-
-            if (cmp < 0)
+            if (list.Get(j).CompareTo(pivot) <= 0)
             {
-                low++;
-                Swap(list, low, i);
-                i++;
-            }
-            else if (cmp > 0)
-            {
-                high--;
-                Swap(list, i, high);
-            }
-            else
-            {
+                Swap(list, i, j);
                 i++;
             }
         }
-
         Swap(list, i, right);
 
-        return new int[] { low + 1, high };
+        return i;
     }
 
     private int DeterminePivotIndex(IMyList<T> list, int left, int right)
