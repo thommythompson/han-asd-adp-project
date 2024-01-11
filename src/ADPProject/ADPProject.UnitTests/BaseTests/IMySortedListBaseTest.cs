@@ -6,7 +6,7 @@ namespace ADPProject.Tests.BaseTests;
 public abstract class IMySortedListBaseTest
 {
     [Fact]
-    void Get()
+    public void Get()
     {
         IMyList<int> list = new MyDynamicArray<int>();
         
@@ -22,6 +22,26 @@ public abstract class IMySortedListBaseTest
         Assert.Equal(1, sortedList.Get(0));
         Assert.Equal(3, sortedList.Get(2));
         Assert.Equal(50, sortedList.Get(5));
+    }
+    
+    [Fact]
+    public void Get2()
+    {
+        IMyList<int> list = new MyDynamicArray<int>();
+        
+        list.Add(5);
+        list.Add(4);
+        list.Add(3);
+        list.Add(2);
+        list.Add(1);
+        
+        IMySortedList<int> sortedList = GetMySortedList(list);
+
+        Assert.Equal(1, sortedList.Get(0));
+        Assert.Equal(2, sortedList.Get(1));
+        Assert.Equal(3, sortedList.Get(2));
+        Assert.Equal(4, sortedList.Get(3));
+        Assert.Equal(5, sortedList.Get(4));
     }
     
     [Fact]

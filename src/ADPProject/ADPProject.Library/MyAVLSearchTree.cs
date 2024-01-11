@@ -6,33 +6,25 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
 
     private int Height(AVLTreeNode<T> node)
     {
-        if (node == null)
-            return 0;
-        return node.height;
+        return node == null ? 0 : node.height;
     }
 
-    private int Max(int a, int b)
-    {
-        return a > b ? a : b;
-    }
+    private int Max(int a, int b) => a > b ? a : b;
 
     private int GetBalance(AVLTreeNode<T> node)
     {
-        if (node == null)
-            return 0;
-        return Height(node.left) - Height(node.right);
+        return node == null ? 0 : Height(node.left) - Height(node.right);
     }
 
     private AVLTreeNode<T> RightRotate(AVLTreeNode<T> y)
     {
         AVLTreeNode<T> x = y.left;
-        AVLTreeNode<T> T2 = x.right;
+        AVLTreeNode<T> rightSubtree = x.right;
 
         x.right = y;
-        y.left = T2;
+        y.left = rightSubtree;
 
-        y.height = Max(Height(y.left), Height(y.right)) + 1;
-        x.height = Max(Height(x.left), Height(x.right)) + 1;
+        UpdateHeights(y, x);
 
         return x;
     }
@@ -40,15 +32,26 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
     private AVLTreeNode<T> LeftRotate(AVLTreeNode<T> x)
     {
         AVLTreeNode<T> y = x.right;
-        AVLTreeNode<T> T2 = y.left;
+        AVLTreeNode<T> leftSubtree = y.left;
 
         y.left = x;
-        x.right = T2;
+        x.right = leftSubtree;
 
-        x.height = Max(Height(x.left), Height(x.right)) + 1;
-        y.height = Max(Height(y.left), Height(y.right)) + 1;
+        UpdateHeights(x, y);
 
         return y;
+    }
+
+    private void UpdateHeights(AVLTreeNode<T> parent, AVLTreeNode<T> child)
+    {
+        int parentHeight = (parent != null) ? Max(Height(parent.left), Height(parent.right)) + 1 : 0;
+        int childHeight = (child != null) ? Max(Height(child.left), Height(child.right)) + 1 : 0;
+
+        if (parent != null)
+            parent.height = parentHeight;
+
+        if (child != null)
+            child.height = childHeight;
     }
 
     public void Insert(T value)
@@ -61,15 +64,24 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
         if (node == null)
             return new AVLTreeNode<T>(value);
 
-        if (value.CompareTo(node.value) < 0)
+        int comparisonResult = value.CompareTo(node.value);
+
+        if (comparisonResult < 0)
             node.left = InsertRecursive(node.left, value);
-        else if (value.CompareTo(node.value) > 0)
+        else if (comparisonResult > 0)
             node.right = InsertRecursive(node.right, value);
         else
             return node;
 
-        node.height = 1 + Max(Height(node.left), Height(node.right));
+        UpdateHeights(node, node.left);
+        UpdateHeights(node, node.right);
 
+        return Balance(node, value);
+    }
+
+
+    private AVLTreeNode<T> Balance(AVLTreeNode<T> node, T value)
+    {
         int balance = GetBalance(node);
 
         if (balance > 1 && value.CompareTo(node.left.value) < 0)
@@ -92,7 +104,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
 
         return node;
     }
-    
+
     public void Remove(T value)
     {
         root = RemoveRecursive(root, value);
@@ -103,62 +115,32 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
         if (node == null)
             return null;
 
-        if (value.CompareTo(node.value) < 0)
+        int comparisonResult = value.CompareTo(node.value);
+
+        if (comparisonResult < 0)
+        {
             node.left = RemoveRecursive(node.left, value);
-        else if (value.CompareTo(node.value) > 0)
+        }
+        else if (comparisonResult > 0)
+        {
             node.right = RemoveRecursive(node.right, value);
-        else {
-            if (node.left == null || node.right == null)
-            {
-                AVLTreeNode<T> temp = null;
-                if (temp == node.left)
-                    temp = node.right;
-                else
-                    temp = node.left;
-
-                if (temp == null)
-                {
-                    temp = node;
-                    node = null;
-                }
-                else
-                    node = temp;
-            }
-            else {
-                AVLTreeNode<T> temp = MinValueNode(node.right);
-
-                node.value = temp.value;
-
-                node.right = RemoveRecursive(node.right, temp.value);
-            }
         }
-
-        if (node == null)
-            return node;
-
-        node.height = 1 + Math.Max(Height(node.left), Height(node.right));
-
-        int balance = GetBalance(node);
-
-        if (balance > 1 && GetBalance(node.left) >= 0)
-            return RightRotate(node);
-
-        if (balance > 1 && GetBalance(node.left) < 0)
+        else
         {
-            node.left = LeftRotate(node.left);
-            return RightRotate(node);
+            if (node.left == null)
+                return node.right;
+
+            if (node.right == null)
+                return node.left;
+
+            node.value = MinValueNode(node.right).value;
+            node.right = RemoveRecursive(node.right, node.value);
         }
 
-        if (balance < -1 && GetBalance(node.right) <= 0)
-            return LeftRotate(node);
+        UpdateHeights(node, node.left);
+        UpdateHeights(node, node.right);
 
-        if (balance < -1 && GetBalance(node.right) > 0)
-        {
-            node.right = RightRotate(node.right);
-            return LeftRotate(node);
-        }
-
-        return node;
+        return Balance(node, value);
     }
 
     private AVLTreeNode<T> MinValueNode(AVLTreeNode<T> node)
@@ -170,7 +152,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
 
         return current;
     }
-    
+
     public bool Find(T value)
     {
         return FindRecursive(root, value);
@@ -189,7 +171,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
         else
             return FindRecursive(node.right, value);
     }
-    
+
     public T FindMin()
     {
         if (root == null)
@@ -217,7 +199,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
 
         return current.value;
     }
-    
+
     public List<T> PreOrder()
     {
         List<T> result = new List<T>();
@@ -234,7 +216,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
             PreOrderTraversal(node.right, result);
         }
     }
-    
+
     public List<T> PostOrder()
     {
         List<T> result = new List<T>();
@@ -251,7 +233,7 @@ public class MyAVLSearchTree<T> : IMyAVLSearchTree<T> where T : IComparable<T>
             result.Add(node.value);
         }
     }
-    
+
     public List<T> InOrder()
     {
         List<T> result = new List<T>();
