@@ -2,5 +2,5 @@ namespace ADPProject.Library.Interfaces;
 
 public interface IMyDijkstraShortestPathAlgorithm<T>
 {
-    Dictionary<T, int> GetShortestPathFrom(T start);
+    Dictionary<T, DijkstraTableRow<T>> GetShortestPathFrom(T start);
 }

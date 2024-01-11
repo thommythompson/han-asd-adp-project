@@ -117,7 +117,7 @@ public class Vertex<T>
     }
 }
 
-public class Edge<T>
+public class Edge<T> : IComparable<Edge<T>>
 {
     public Vertex<T> Destination { get; set; }
     public int Weight { get; set; }
@@ -126,5 +126,10 @@ public class Edge<T>
     {
         Destination = destination;
         Weight = weight;
+    }
+
+    public int CompareTo(Edge<T> other)
+    {
+        return Weight.CompareTo(other.Weight);
     }
 }

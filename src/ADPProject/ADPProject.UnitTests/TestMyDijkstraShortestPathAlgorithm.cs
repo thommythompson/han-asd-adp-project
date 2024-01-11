@@ -32,7 +32,7 @@ public class TestMyDijkstraShortestPathAlgorithm
 
         var paths = dijkstra.GetShortestPathFrom('A');
 
-        var expected = new Dictionary<char, int> { { 'H', 60 } };
+        var expected = new Dictionary<char , DijkstraTableRow<char>> { { 'H', new DijkstraTableRow<char>(60, 'G') } };
 
         Assert.Contains(paths, expected.Contains);
     }
